@@ -12,21 +12,17 @@ import ProcessFlow from '../components/ProcessFlow'
 import MaintenancePriority from '../components/MaintenancePriority'
 import RecentAlerts from '../components/RecentAlerts'
 import EquipmentHealthTable from '../components/EquipmentHealthTable'
-import EquipmentDetail from '../components/EquipmentDetail'
 import ActOnThis from '../components/ActOnThis'
 import Predictions from '../components/Predictions'
 import PlantKPIs from '../components/PlantKPIs'
-import MTBFCharts from '../components/MTBFCharts'
 import SparePartsAtRisk from '../components/SparePartsAtRisk'
-import BestMaintenanceWindow from '../components/BestMaintenanceWindow'
-import AIAssistant from '../components/AIAssistant'
 import { plantStats } from '../data/mockData'
 
-export default function Overview() {
+export default function Overview({ onNavigate }) {
   return (
-    <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+    <div className="p-6 space-y-6">
       {/* Row 1: Stat cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-7 gap-4">
+      <div className="grid grid-cols-7 gap-4">
         <StatCard
           icon={Activity}
           label="Overall Plant Health"
@@ -77,53 +73,29 @@ export default function Overview() {
         />
       </div>
 
-      {/* Row 2: Process flow + Maintenance priority + Recent alerts */}
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-        <div className="col-span-1">
-          <ProcessFlow />
-        </div>
-        <div className="col-span-1">
-          <MaintenancePriority />
-        </div>
-        <div className="col-span-1">
-          <RecentAlerts />
-        </div>
+      {/* Row 2: Process flow preview */}
+      <ProcessFlow />
+
+      {/* Row 3: Alerts preview + Maintenance priority preview */}
+      <div className="grid grid-cols-2 gap-4">
+        <RecentAlerts limit={3} onViewAll={() => onNavigate('alerts')} />
+        <MaintenancePriority limit={3} onViewAll={() => onNavigate('maintenance-planner')} />
       </div>
 
-      {/* Row 3: Equipment health + Equipment detail + Act on this + Predictions */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-4">
-        <div className="col-span-1">
-          <EquipmentHealthTable />
-        </div>
-        <div className="col-span-1">
-          <EquipmentDetail />
-        </div>
-        <div className="col-span-1">
-          <ActOnThis />
-        </div>
-        <div className="col-span-1">
-          <Predictions />
-        </div>
+      {/* Row 4: Equipment preview + Predictions preview */}
+      <div className="grid grid-cols-2 gap-4">
+        <EquipmentHealthTable limit={4} onViewAll={() => onNavigate('equipment')} />
+        <Predictions limit={3} onViewAll={() => onNavigate('predictions')} />
       </div>
 
-      {/* Row 4: Plant KPIs + MTBF/MTTR + Spare parts + Best window + AI assistant */}
-      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-5 gap-4">
-        <div className="col-span-1">
-          <PlantKPIs />
-        </div>
-        <div className="col-span-1">
-          <MTBFCharts />
-        </div>
-        <div className="col-span-1">
-          <SparePartsAtRisk />
-        </div>
-        <div className="col-span-1">
-          <BestMaintenanceWindow />
-        </div>
-        <div className="col-span-1">
-          <AIAssistant />
-        </div>
+      {/* Row 5: Act on this preview + Spare parts preview */}
+      <div className="grid grid-cols-2 gap-4">
+        <ActOnThis limit={2} onViewAll={() => onNavigate('maintenance-planner')} />
+        <SparePartsAtRisk limit={3} onViewAll={() => onNavigate('spare-parts')} />
       </div>
+
+      {/* Row 6: Plant KPIs preview */}
+      <PlantKPIs limit={3} onViewAll={() => onNavigate('reports-kpis')} />
     </div>
   )
 }

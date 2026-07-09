@@ -6,17 +6,24 @@ const riskStyles = {
   Low: 'text-emerald-400',
 }
 
-export default function SparePartsAtRisk() {
+export default function SparePartsAtRisk({ limit, onViewAll }) {
+  const rows = limit ? sparePartsAtRisk.slice(0, limit) : sparePartsAtRisk
+
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col overflow-x-auto">
+    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-white text-sm font-semibold">SPARE PARTS AT RISK</h2>
-        <button className="text-blue-400 text-xs font-medium hover:text-blue-300 transition-colors">
-          View all
-        </button>
+        {onViewAll && (
+          <button
+            onClick={onViewAll}
+            className="text-blue-400 text-xs font-medium hover:text-blue-300 transition-colors"
+          >
+            View all
+          </button>
+        )}
       </div>
 
-      <table className="w-full min-w-[620px] text-sm">
+      <table className="w-full text-sm">
         <thead>
           <tr className="text-slate-500 text-[11px] uppercase tracking-wide">
             <th className="text-left font-medium pb-2">Part</th>
@@ -26,7 +33,7 @@ export default function SparePartsAtRisk() {
           </tr>
         </thead>
         <tbody>
-          {sparePartsAtRisk.map((row) => (
+          {rows.map((row) => (
             <tr key={row.part} className="border-t border-slate-800">
               <td className="py-2.5 text-white font-medium whitespace-nowrap">{row.part}</td>
               <td className="py-2.5 text-slate-300">{row.equipment}</td>

@@ -19,12 +19,24 @@ const trendColor = (status) => {
   return '#34d399'
 }
 
-export default function EquipmentHealthTable() {
-  return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 overflow-x-auto">
-      <h2 className="text-white text-sm font-semibold mb-4">EQUIPMENT HEALTH OVERVIEW</h2>
+export default function EquipmentHealthTable({ limit, onViewAll }) {
+  const rows = limit ? equipmentHealth.slice(0, limit) : equipmentHealth
 
-      <table className="w-full min-w-[760px] text-sm">
+  return (
+    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-white text-sm font-semibold">EQUIPMENT HEALTH OVERVIEW</h2>
+        {onViewAll && (
+          <button
+            onClick={onViewAll}
+            className="text-blue-400 text-xs font-medium hover:text-blue-300 transition-colors"
+          >
+            View all
+          </button>
+        )}
+      </div>
+
+      <table className="w-full text-sm">
         <thead>
           <tr className="text-slate-500 text-[11px] uppercase tracking-wide">
             <th className="text-left font-medium pb-2">Equipment</th>
@@ -35,7 +47,7 @@ export default function EquipmentHealthTable() {
           </tr>
         </thead>
         <tbody>
-          {equipmentHealth.map((eq) => (
+          {rows.map((eq) => (
             <tr key={eq.name} className="border-t border-slate-800">
               <td className="py-2.5 text-white font-medium whitespace-nowrap">{eq.name}</td>
               <td className="py-2.5">

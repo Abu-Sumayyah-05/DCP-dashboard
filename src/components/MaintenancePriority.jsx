@@ -15,17 +15,29 @@ const impactStyles = {
   Low: 'text-emerald-400',
 }
 
-export default function MaintenancePriority() {
+export default function MaintenancePriority({ limit, onViewAll }) {
+  const rows = limit ? maintenancePriority.slice(0, limit) : maintenancePriority
+
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col overflow-x-auto">
-      <div className="flex items-center gap-2 mb-4">
-        <Clock size={16} className="text-slate-400" />
-        <h2 className="text-white text-sm font-semibold">
-          MAINTENANCE PRIORITY <span className="text-slate-500 font-normal">(Top 5)</span>
-        </h2>
+    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <Clock size={16} className="text-slate-400" />
+          <h2 className="text-white text-sm font-semibold">
+            MAINTENANCE PRIORITY {!limit && <span className="text-slate-500 font-normal">(Top 5)</span>}
+          </h2>
+        </div>
+        {onViewAll && (
+          <button
+            onClick={onViewAll}
+            className="text-blue-400 text-xs font-medium hover:text-blue-300 transition-colors"
+          >
+            View all
+          </button>
+        )}
       </div>
 
-      <table className="w-full min-w-[620px] text-sm">
+      <table className="w-full text-sm">
         <thead>
           <tr className="text-slate-500 text-[11px] uppercase tracking-wide">
             <th className="text-left font-medium pb-2 w-8">#</th>
@@ -36,7 +48,7 @@ export default function MaintenancePriority() {
           </tr>
         </thead>
         <tbody>
-          {maintenancePriority.map((row) => (
+          {rows.map((row) => (
             <tr key={row.rank} className="border-t border-slate-800">
               <td className="py-2.5 text-slate-400">{row.rank}</td>
               <td className="py-2.5 text-white font-medium">{row.equipment}</td>

@@ -13,7 +13,9 @@ const valueColors = {
   Low: 'text-emerald-400',
 }
 
-export default function Predictions() {
+export default function Predictions({ limit, onViewAll }) {
+  const items = limit ? predictions.slice(0, limit) : predictions
+
   return (
     <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col">
       <div className="flex items-center gap-2 mb-4">
@@ -21,8 +23,8 @@ export default function Predictions() {
         <h2 className="text-white text-sm font-semibold">PREDICTIONS</h2>
       </div>
 
-      <div className="space-y-3 flex-1 min-w-0">
-        {predictions.map((p) => (
+      <div className="space-y-3 flex-1">
+        {items.map((p) => (
           <div key={p.equipment} className="flex items-center justify-between">
             <div className="flex items-center gap-2 min-w-0">
               <span className={`w-2 h-2 rounded-full shrink-0 ${dotColors[p.level]}`} />
@@ -38,9 +40,14 @@ export default function Predictions() {
         ))}
       </div>
 
-      <button className="text-blue-400 text-xs font-medium hover:text-blue-300 transition-colors mt-4 text-left">
-        View all predictions
-      </button>
+      {onViewAll && (
+        <button
+          onClick={onViewAll}
+          className="text-blue-400 text-xs font-medium hover:text-blue-300 transition-colors mt-4 text-left"
+        >
+          View all predictions
+        </button>
+      )}
     </div>
   )
 }
