@@ -1,9 +1,25 @@
 import { Factory } from 'lucide-react'
 import { rotaryKilnDetail } from '../data/mockData'
 
+const machineImages = import.meta.glob('../assets/machines/*', {
+  eager: true,
+  import: 'default',
+})
+
+const getMachineImage = (imageName) => machineImages[`../assets/machines/${imageName}`] || null
+
 export default function EquipmentDetail() {
-  const { name, riskLabel, healthScore, remainingUsefulLife, keyParameters, failureProbability } =
-    rotaryKilnDetail
+  const {
+    name,
+    riskLabel,
+    healthScore,
+    remainingUsefulLife,
+    keyParameters,
+    failureProbability,
+    image,
+  } = rotaryKilnDetail
+
+  const imageSrc = getMachineImage(image)
 
   return (
     <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col">
@@ -19,8 +35,14 @@ export default function EquipmentDetail() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Left: image + health score */}
         <div>
-          <div className="aspect-video bg-slate-800 rounded-lg flex items-center justify-center mb-3">
-            <Factory size={40} className="text-slate-600" />
+          <div className="aspect-video bg-slate-800 rounded-lg overflow-hidden mb-3 border border-slate-700">
+            {imageSrc ? (
+              <img src={imageSrc} alt={name} className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <Factory size={40} className="text-slate-600" />
+              </div>
+            )}
           </div>
           <p className="text-slate-400 text-xs mb-1">Health Score</p>
           <p className="text-3xl font-bold text-red-400 leading-none mb-3">{healthScore}%</p>

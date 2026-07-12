@@ -11,13 +11,13 @@ export const plantStats = {
 }
 
 export const processFlow = [
-  { id: 1, name: 'Crusher', status: 'healthy' },
-  { id: 2, name: 'Raw Mill', status: 'healthy' },
-  { id: 3, name: 'Preheater', status: 'healthy' },
-  { id: 4, name: 'Kiln', status: 'critical' },
-  { id: 5, name: 'Cooler', status: 'healthy' },
-  { id: 6, name: 'Cement Mill', status: 'healthy' },
-  { id: 7, name: 'Packing Plant', status: 'healthy' },
+  { id: 1, name: 'Crusher', status: 'healthy', image: 'crusher.jpg' },
+  { id: 2, name: 'Raw Mill', status: 'healthy', image: 'raw-mill.jpg' },
+  { id: 3, name: 'Preheater', status: 'healthy', image: 'preheater.jpg' },
+  { id: 4, name: 'Kiln', status: 'critical', image: 'kiln.jpg' },
+  { id: 5, name: 'Cooler', status: 'healthy', image: 'cooler.jpg' },
+  { id: 6, name: 'Cement Mill', status: 'healthy', image: 'cement-mill.jpg' },
+  { id: 7, name: 'Packing Plant', status: 'healthy', image: 'packing-plant.jpg' },
 ]
 
 export const maintenancePriority = [
@@ -52,6 +52,7 @@ export const rotaryKilnDetail = {
   riskLabel: 'High Risk',
   healthScore: 61,
   remainingUsefulLife: '18 Days',
+  image: 'kiln.jpg',
   keyParameters: [
     { label: 'Shell Temp (Burning Zone)', value: '1250 °C' },
     { label: 'Shell Temp (Cooler End)', value: '105 °C' },
