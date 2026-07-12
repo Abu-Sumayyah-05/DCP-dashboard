@@ -19,7 +19,7 @@ export default function MaintenancePriority({ limit, onViewAll }) {
   const rows = limit ? maintenancePriority.slice(0, limit) : maintenancePriority
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col">
+    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col min-w-0 overflow-hidden">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Clock size={16} className="text-slate-400" />
@@ -37,7 +37,8 @@ export default function MaintenancePriority({ limit, onViewAll }) {
         )}
       </div>
 
-      <table className="w-full text-sm">
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[560px] text-sm">
         <thead>
           <tr className="text-slate-500 text-[11px] uppercase tracking-wide">
             <th className="text-left font-medium pb-2 w-8">#</th>
@@ -64,7 +65,8 @@ export default function MaintenancePriority({ limit, onViewAll }) {
             </tr>
           ))}
         </tbody>
-      </table>
+        </table>
+      </div>
     </div>
   )
 }

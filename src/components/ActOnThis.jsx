@@ -11,7 +11,7 @@ export default function ActOnThis({ limit, onViewAll }) {
   const items = limit ? actOnThis.slice(0, limit) : actOnThis
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col">
+    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col min-w-0 overflow-hidden">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <CheckSquare size={16} className="text-slate-400" />
@@ -35,7 +35,7 @@ export default function ActOnThis({ limit, onViewAll }) {
           >
             <div className="min-w-0">
               <p className="text-white text-sm font-medium leading-snug mb-2">{item.title}</p>
-              <div className="flex items-center gap-4 text-xs">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs">
                 <span className="text-slate-500">
                   Priority{' '}
                   <span className={`font-medium ${priorityStyles[item.priority]}`}>

@@ -5,7 +5,7 @@ export default function PlantKPIs({ limit, onViewAll }) {
   const items = limit ? plantKPIs.slice(0, limit) : plantKPIs
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 min-w-0 overflow-hidden">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-white text-sm font-semibold">PLANT KPIs (Today's)</h2>
         {onViewAll && (
@@ -23,9 +23,9 @@ export default function PlantKPIs({ limit, onViewAll }) {
           const isUp = kpi.direction === 'up'
           const Icon = isUp ? ArrowUp : ArrowDown
           return (
-            <div key={kpi.label} className="flex items-center justify-between text-sm">
-              <span className="text-slate-400">{kpi.label}</span>
-              <div className="flex items-center gap-2">
+            <div key={kpi.label} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm">
+              <span className="text-slate-400 break-words">{kpi.label}</span>
+              <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
                 <span className="text-white font-medium">{kpi.value}</span>
                 <span
                   className={`flex items-center gap-0.5 text-xs font-medium ${

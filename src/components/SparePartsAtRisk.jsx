@@ -10,7 +10,7 @@ export default function SparePartsAtRisk({ limit, onViewAll }) {
   const rows = limit ? sparePartsAtRisk.slice(0, limit) : sparePartsAtRisk
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col">
+    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col min-w-0 overflow-hidden">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-white text-sm font-semibold">SPARE PARTS AT RISK</h2>
         {onViewAll && (
@@ -23,7 +23,8 @@ export default function SparePartsAtRisk({ limit, onViewAll }) {
         )}
       </div>
 
-      <table className="w-full text-sm">
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[560px] text-sm">
         <thead>
           <tr className="text-slate-500 text-[11px] uppercase tracking-wide">
             <th className="text-left font-medium pb-2">Part</th>
@@ -42,7 +43,8 @@ export default function SparePartsAtRisk({ limit, onViewAll }) {
             </tr>
           ))}
         </tbody>
-      </table>
+        </table>
+      </div>
     </div>
   )
 }

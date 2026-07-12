@@ -23,7 +23,7 @@ export default function EquipmentHealthTable({ limit, onViewAll }) {
   const rows = limit ? equipmentHealth.slice(0, limit) : equipmentHealth
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 min-w-0 overflow-hidden">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-white text-sm font-semibold">EQUIPMENT HEALTH OVERVIEW</h2>
         {onViewAll && (
@@ -36,7 +36,8 @@ export default function EquipmentHealthTable({ limit, onViewAll }) {
         )}
       </div>
 
-      <table className="w-full text-sm">
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[720px] text-sm">
         <thead>
           <tr className="text-slate-500 text-[11px] uppercase tracking-wide">
             <th className="text-left font-medium pb-2">Equipment</th>
@@ -81,7 +82,8 @@ export default function EquipmentHealthTable({ limit, onViewAll }) {
             </tr>
           ))}
         </tbody>
-      </table>
+        </table>
+      </div>
     </div>
   )
 }

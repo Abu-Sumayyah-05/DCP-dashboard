@@ -40,11 +40,11 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen bg-slate-950 overflow-hidden">
+    <div className="flex min-h-dvh flex-col lg:flex-row bg-slate-950 overflow-hidden">
       <Sidebar activePage={activePage} onNavigate={setActivePage} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <TopBar />
-        <main className="flex-1 overflow-y-auto bg-slate-950">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden bg-slate-950">
           {renderPage()}
         </main>
       </div>
