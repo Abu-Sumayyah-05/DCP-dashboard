@@ -37,7 +37,11 @@ export default function EquipmentDetail() {
         <div>
           <div className="aspect-video bg-slate-800 rounded-lg overflow-hidden mb-3 border border-slate-700">
             {imageSrc ? (
-              <img src={imageSrc} alt={name} className="w-full h-full object-cover" />
+              <img
+                src={imageSrc}
+                alt={name}
+                className="w-full h-full object-cover blur-[0.4px] contrast-90 saturate-80 brightness-95"
+              />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
                 <Factory size={40} className="text-slate-600" />

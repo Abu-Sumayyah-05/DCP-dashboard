@@ -56,7 +56,7 @@ export default function ProcessFlow() {
                       <img
                         src={imageSrc}
                         alt={stage.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover blur-[0.4px] contrast-90 saturate-80 brightness-95"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
